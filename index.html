@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ParkHero - Smart Parking Solutions</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- ========== NAVIGATION ========== -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">ParkHero</div>
+            <ul class="nav-menu">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#benefits">Benefits</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ========== HERO SECTION ========== -->
+    <section class="hero">
+        <div class="container">
+            <div class="centered">
+                <h1>Find Parking. Instantly.</h1>
+                <p>Real-time parking availability at your fingertips</p>
+                <button class="btn-primary">Download App</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== PROBLEM SECTION ========== -->
+    <section class="problem-section">
+        <h2>The Problem We Solve</h2>
+        <div class="row">
+            <div class="column image">
+                <img src="assets/problem-image.jpg" alt="Frustrated driver looking for parking">
+            </div>
+            <div class="column text">
+                <p>
+                    Many drivers waste valuable time driving in circles looking for parking, especially in busy areas like cities, shopping centers, airports, and stadiums. This wastes fuel, increases traffic congestion, and causes frustration.
+                </p>
+                <p>
+                    <strong>ParkHero changes that.</strong> Show drivers exactly where parking is available before they arrive, reducing search time and stress.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FEATURES SECTION ========== -->
+    <section id="features" class="features-section">
+        <h2>Key Features</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🗺️</div>
+                <h3>Real-Time Map</h3>
+                <p>See available parking spots instantly on an interactive map with live updates.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📍</div>
+                <h3>Reserve in Advance</h3>
+                <p>Book your parking spot before you arrive and guarantee your space.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💰</div>
+                <h3>Compare Prices</h3>
+                <p>Find the best parking rates and make informed decisions about where to park.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🧭</div>
+                <h3>Turn-by-Turn Navigation</h3>
+                <p>Get guided directions directly to your selected parking space.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📡</div>
+                <h3>Offline Functionality</h3>
+                <p>Works even with weak signal - automatically syncs when reconnected.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🌍</div>
+                <h3>Universal Coverage</h3>
+                <p>One app for parking everywhere - cities, malls, airports, and stadiums.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== HOW IT WORKS SECTION ========== -->
+    <section id="how-it-works" class="how-it-works">
+        <h2>How ParkHero Works</h2>
+        <div class="steps-container">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h3>Open the App</h3>
+                <p>Launch ParkHero and view real-time parking availability around you.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <h3>Select a Spot</h3>
+                <p>Browse available parking spots and compare prices in your area.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <h3>Reserve & Pay</h3>
+                <p>Secure your spot with a quick reservation and convenient payment.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">4</div>
+                <h3>Navigate & Park</h3>
+                <p>Follow turn-by-turn directions to your parking space and enjoy stress-free parking.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== PARKING SPOTS DEMO ========== -->
+    <section class="spots-wrapper">
+        <h2>Available Parking Spots - Live Demo</h2>
+        <p style="margin-bottom: 20px; color: #666;">Click any spot to select it</p>
+        <div id="spots"></div>
+        <div id="spot-info" style="margin-top: 20px; padding: 20px; background: #f0f0f0; border-radius: 8px; display: none;">
+            <p><strong>Selected Spot:</strong> <span id="selected-spot"></span></p>
+            <p><strong>Price:</strong> $<span id="spot-price"></span> per hour</p>
+            <button class="btn-primary" style="margin-top: 15px;">Reserve Now</button>
+        </div>
+    </section>
+
+    <!-- ========== BENEFITS SECTION ========== -->
+    <section id="benefits" class="benefits-section">
+        <h2>Why Choose ParkHero?</h2>
+        
+        <div class="benefit-row">
+            <div class="benefit-card">
+                <h3>🚗 For Drivers</h3>
+                <ul>
+                    <li>Save time searching for parking</li>
+                    <li>Reduce fuel costs and emissions</li>
+                    <li>Reserve spots in advance</li>
+                    <li>Compare prices easily</li>
+                    <li>Less stress, better experience</li>
+                </ul>
+            </div>
+            <div class="benefit-card">
+                <h3>🏢 For Businesses</h3>
+                <ul>
+                    <li>Fill parking spaces more efficiently</li>
+                    <li>Attract more customers</li>
+                    <li>Increase revenue per spot</li>
+                    <li>Real-time occupancy data</li>
+                    <li>Marketing opportunities</li>
+                </ul>
+            </div>
+            <div class="benefit-card">
+                <h3>🌱 For Cities</h3>
+                <ul>
+                    <li>Reduce traffic congestion</li>
+                    <li>Lower pollution and emissions</li>
+                    <li>Better urban planning data</li>
+                    <li>Improved driver satisfaction</li>
+                    <li>Sustainable mobility</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== WHAT MAKES US DIFFERENT ========== -->
+    <section class="difference-section">
+        <h2>What Makes ParkHero Different</h2>
+        
+        <div class="row">
+            <div class="column text">
+                <h3>Universal Coverage</h3>
+                <p>
+                    Tired of downloading multiple parking apps? ParkHero brings parking providers together in one unified platform. Whether you're in your home city or traveling somewhere new, one app covers it all.
+                </p>
+            </div>
+            <div class="column image">
+                <img src="assets/universal-coverage.jpg" alt="Global parking network">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="column image">
+                <img src="assets/offline-functionality.jpg" alt="Offline parking app">
+            </div>
+            <div class="column text">
+                <h3>Offline Functionality</h3>
+                <p>
+                    Lost signal in an underground garage? No problem. ParkHero works even with weak or no internet connection. Your data automatically syncs once you're back online. Never worry about parking in dead zones again.
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="column text">
+                <h3>Integrated with Car Businesses</h3>
+                <p>
+                    ParkHero seamlessly integrates with car manufacturers and automotive services. Whether through your car's built-in system or a dedicated app, parking solutions are always within reach.
+                </p>
+            </div>
+            <div class="column image">
+                <img src="assets/car-integration.jpg" alt="Car integration">
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== PRICING SECTION ========== -->
+    <section id="pricing" class="pricing-section">
+        <h2>Simple, Transparent Pricing</h2>
+        <div class="pricing-cards">
+            <div class="pricing-card">
+                <h3>Per Reservation</h3>
+                <div class="price">Small Fee</div>
+                <ul>
+                    <li>Reserve any parking spot</li>
+                    <li>Real-time availability</li>
+                    <li>Payment in app</li>
+                </ul>
+                <button class="btn-secondary">Get Started</button>
+            </div>
+            <div class="pricing-card featured">
+                <h3>Premium Subscription</h3>
+                <div class="price">$9.99/mo</div>
+                <ul>
+                    <li>Unlimited reservations</li>
+                    <li>Priority spots</li>
+                    <li>Exclusive discounts</li>
+                    <li>Priority support</li>
+                </ul>
+                <button class="btn-primary">Subscribe Now</button>
+            </div>
+            <div class="pricing-card">
+                <h3>For Businesses</h3>
+                <div class="price">Custom</div>
+                <ul>
+                    <li>Listing integration</li>
+                    <li>Revenue sharing</li>
+                    <li>Analytics dashboard</li>
+                    <li>Dedicated support</li>
+                </ul>
+                <button class="btn-secondary">Partner With Us</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== DOWNLOAD SECTION ========== -->
+    <section class="download-section">
+        <h2>Ready to Find Parking?</h2>
+        <p>Download ParkHero today and start saving time and money</p>
+        <div class="download-buttons">
+            <button class="btn-primary large">📱 iOS App Store</button>
+            <button class="btn-primary large">🤖 Google Play</button>
+        </div>
+    </section>
+
+    <!-- ========== CONTACT SECTION ========== -->
+    <section id="contact" class="contact-section">
+        <h2>Get in Touch</h2>
+        <div class="contact-form">
+            <form>
+                <div class="form-group">
+                    <input type="text" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" placeholder="Your Email" required>
+                </div>
+                <div class="form-group">
+                    <textarea placeholder="Your Message" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="btn-primary">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <!-----------FOOTER ------------>
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>ParkHero</h4>
+                <p>Smart parking solutions for modern cities</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#how-it-works">How It Works</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
+        <p style="margin-top: 30px; border-top: 1px solid #444; padding-top: 20px; text-align: center;">
+            &copy; 2026 ParkHero. All rights reserved.
+        </p>
+    </footer>
+
+    <script src="script.js"></script> 
+</body>
+</html>
