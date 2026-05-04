@@ -29,10 +29,26 @@ body{
   padding:15px 40px;
 }
 
-.logo{
-  font-size:28px;
-  font-weight:bold;
-  color:#007bff;
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 20px;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.logo-icon {
+  width: 26px;
+  height: 26px;
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: bold;
 }
 
 .nav-menu{
