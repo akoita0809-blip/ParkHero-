@@ -49,13 +49,14 @@ ParkHero solves a real everyday problem that affects millions of drivers. It imp
 ---
 
 ## What Makes ParkHero Stand Out
-
+---
 ### Universal Coverage
 Instead of requiring multiple apps for different cities, ParkHero combines parking providers into one platform. Drivers only need one app anywhere they go.
 
 ### Offline Functionality
 ParkHero is designed to function even in low-signal areas such as underground garages. Data updates automatically when the device reconnects to the internet. 
-
+ ## Code Explanation ( HTML, CSS, AND JAVASCRIPT )
+ ---
 ### HTML 
 HTML creates the structure of the ParkHero website. It organizes the content such as the navigation bar, parking sections, buttons, and page layout.
 
