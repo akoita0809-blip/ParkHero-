@@ -58,11 +58,11 @@ ParkHero is designed to function even in low-signal areas such as underground ga
  ## Code Explanation ( HTML, CSS, AND JAVASCRIPT )
  ---
 ### HTML 
-HTML creates the structure of the ParkHero website. It organizes the content such as the navigation bar, parking sections, buttons, and page layout.
+HTML creates the structure of the ParkHero website. It organizes the content such as the navigation bar, parking sections, buttons, and page layout. It defines how information is displayed on the page and ensures all elements are properly arranged so users can easily navigate and understand the website.
 
 ### CSS
 CSS controls the design and appearance of the website. It styles colors, layouts, spacing, and buttons to make the site clean, modern, and user-friendly. It also helps the site work on different screen sizes.
 
 ### JavaScript 
 
-JavaScript adds interactivity to the website. It allows users to select parking spots, view updates, and see pricing changes. It makes the website dynamic instead of static.
+JavaScript adds interactivity to the website. It allows users to select parking spots, view real-time updates, and see pricing changes based on their selections. It also handles user actions such as clicks and dynamically updates the page without needing to reload it. This makes the website more engaging and turns it from a static page into a fully interactive application.
