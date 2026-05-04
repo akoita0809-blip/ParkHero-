@@ -198,7 +198,20 @@ input, textarea{
   border:2px solid #ddd;
   border-radius:8px;
 }
+ /* ===== EXTRA ACCOUNT SECTION ===== */
+.extra-account-section{
+  display:flex;
+  justify-content:center;
+  padding:60px 20px;
+}
 
+.account-card{
+  width:450px;
+  background:#fff;
+  padding:40px;
+  border-radius:20px;
+  box-shadow:0 5px 20px rgba(0,0,0,.08);
+}
 /* ===== FOOTER ===== */
 .footer{
   background:#111;
