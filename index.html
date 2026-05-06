@@ -3,15 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ParkHero - Find parking instantly with real-time availability, price comparison, and advance reservations.">
     <title>ParkHero - Smart Parking Solutions</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
     <!-- ========== NAVIGATION ========== -->
     <nav class="navbar">
         <div class="nav-container">
             <div class="logo">ParkHero</div>
-            <ul class="nav-menu">
+            <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu" id="nav-menu">
                 <li><a href="#features">Features</a></li>
                 <li><a href="#how-it-works">How It Works</a></li>
                 <li><a href="#benefits">Benefits</a></li>
@@ -117,19 +124,18 @@
     <!-- ========== PARKING SPOTS DEMO ========== -->
     <section class="spots-wrapper">
         <h2>Available Parking Spots - Live Demo</h2>
-        <p style="margin-bottom: 20px; color: #666;">Click any spot to select it</p>
+        <p class="spots-subtitle">Click any spot to select it</p>
         <div id="spots"></div>
-        <div id="spot-info" style="margin-top: 20px; padding: 20px; background: #f0f0f0; border-radius: 8px; display: none;">
+        <div id="spot-info" class="spot-info-box">
             <p><strong>Selected Spot:</strong> <span id="selected-spot"></span></p>
             <p><strong>Price:</strong> $<span id="spot-price"></span> per hour</p>
-            <button class="btn-primary" style="margin-top: 15px;">Reserve Now</button>
+            <button class="btn-primary spot-reserve-btn">Reserve Now</button>
         </div>
     </section>
 
     <!-- ========== BENEFITS SECTION ========== -->
     <section id="benefits" class="benefits-section">
         <h2>Why Choose ParkHero?</h2>
-        
         <div class="benefit-row">
             <div class="benefit-card">
                 <h3>🚗 For Drivers</h3>
@@ -167,7 +173,7 @@
     <!-- ========== WHAT MAKES US DIFFERENT ========== -->
     <section class="difference-section">
         <h2>What Makes ParkHero Different</h2>
-        
+
         <div class="row">
             <div class="column text">
                 <h3>Universal Coverage</h3>
@@ -182,7 +188,7 @@
 
         <div class="row">
             <div class="column image">
-                <img src="offline function.jpg" alt="Offline parking app">
+                <img src="offline-function.jpg" alt="Offline parking app">
             </div>
             <div class="column text">
                 <h3>Offline Functionality</h3>
@@ -252,7 +258,7 @@
             <button class="btn-primary large">📱 iOS App Store</button>
             <button class="btn-primary large">🤖 Google Play</button>
             <a href="https://github.com/user-attachments/files/27381746/ParkHero.jar.zip" download>
-                <button class="btn-primary large"> Desktop App</button>
+                <button class="btn-primary large">💻 Desktop App</button>
             </a>
         </div>
     </section>
@@ -261,7 +267,7 @@
     <section id="contact" class="contact-section">
         <h2>Get in Touch</h2>
         <div class="contact-form">
-            <form>
+            <form id="contact-form">
                 <div class="form-group">
                     <input type="text" placeholder="Your Name" required>
                 </div>
@@ -272,11 +278,12 @@
                     <textarea placeholder="Your Message" rows="5" required></textarea>
                 </div>
                 <button type="submit" class="btn-primary">Send Message</button>
+                <p class="form-success" id="form-success">Thanks! We'll be in touch soon. ✅</p>
             </form>
         </div>
     </section>
 
-    <!-----------FOOTER ------------>
+    <!-- ========== FOOTER ========== -->
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-section">
@@ -299,11 +306,9 @@
                 </ul>
             </div>
         </div>
-        <p style="margin-top: 30px; border-top: 1px solid #444; padding-top: 20px; text-align: center;">
-            &copy; 2026 ParkHero. All rights reserved.
-        </p>
+        <p class="footer-copy">&copy; 2026 ParkHero. All rights reserved.</p>
     </footer>
 
-    <script src="script.js"></script> 
+    <script src="script.js"></script>
 </body>
 </html>
