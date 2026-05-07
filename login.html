@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ParkHero - Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ========== NAVIGATION ========== -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo"><a href="index.html" style="text-decoration:none; color:#007bff;">ParkHero</a></div>
+            <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="index.html#features">Features</a></li>
+                <li><a href="index.html#how-it-works">How It Works</a></li>
+                <li><a href="index.html#pricing">Pricing</a></li>
+                <li><a href="login.html" class="active">Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ========== LOGIN SECTION ========== -->
+    <section class="login-section">
+        <div class="login-box">
+            <div class="login-logo">🅿</div>
+            <h2>Welcome Back</h2>
+            <p class="login-subtitle">Sign in to your ParkHero account</p>
+
+            <form id="login-form">
+                <div class="form-group">
+                    <input type="email" id="email" placeholder="Email Address" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="password" placeholder="Password" required>
+                </div>
+                <button type="submit" class="btn-primary" style="width:100%">Sign In</button>
+                <p class="form-success" id="login-success">✅ Logged in successfully! Redirecting...</p>
+                <p class="form-error" id="login-error">❌ Invalid email or password.</p>
+            </form>
+
+            <div class="login-links">
+                <a href="#">Forgot Password?</a>
+                <span>|</span>
+                <a href="signup.html">Create Account</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer">
+        <p class="footer-copy">&copy; 2026 ParkHero. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
