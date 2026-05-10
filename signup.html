@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ParkHero - Create Account</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo"><a href="index.html" style="text-decoration:none; color:#007bff;">ParkHero</a></div>
+            <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="features.html">Features</a></li>
+                <li><a href="how-it-works.html">How It Works</a></li>
+                <li><a href="pricing.html">Pricing</a></li>
+                <li><a href="login.html" class="nav-login">Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="login-section">
+        <div class="login-box">
+            <div class="login-logo">🅿</div>
+            <h2>Create Account</h2>
+            <p class="login-subtitle">Join ParkHero and start parking smarter</p>
+            <form id="signup-form">
+                <div class="form-group">
+                    <input type="text" id="signup-name" placeholder="Full Name" required>
+                    <p class="field-error" id="name-error"></p>
+                </div>
+                <div class="form-group">
+                    <input type="email" id="signup-email" placeholder="Email Address" required>
+                    <p class="field-error" id="email-error"></p>
+                </div>
+                <div class="form-group" style="position:relative;">
+                    <input type="password" id="signup-password" placeholder="Password" required>
+                    <button type="button" class="toggle-pw" onclick="togglePw('signup-password', this)">Show</button>
+                    <p class="field-error" id="password-error"></p>
+                    <div class="password-strength" id="pw-strength">
+                        <div class="strength-bar">
+                            <div class="strength-fill" id="strength-fill"></div>
+                        </div>
+                        <span class="strength-label" id="strength-label"></span>
+                    </div>
+                </div>
+                <div class="form-group" style="position:relative;">
+                    <input type="password" id="signup-confirm" placeholder="Confirm Password" required>
+                    <button type="button" class="toggle-pw" onclick="togglePw('signup-confirm', this)">Show</button>
+                    <p class="field-error" id="confirm-error"></p>
+                </div>
+                <div class="form-group checkbox-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="signup-terms" required>
+                        I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+                    </label>
+                    <p class="field-error" id="terms-error"></p>
+                </div>
+                <button type="submit" class="btn-primary" style="width:100%">Create Account</button>
+                <p class="form-success" id="signup-success">✅ Account created! Redirecting to login...</p>
+                <p class="form-error" id="signup-error"></p>
+            </form>
+            <div class="login-links">
+                Already have an account? <a href="login.html">Sign In</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p class="footer-copy">&copy; 2026 ParkHero. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        function togglePw(id, btn) {
+            const input = document.getElementById(id);
+            input.type = input.type === 'password' ? 'text' : 'password';
+            btn.textContent = input.type === 'password' ? 'Show' : 'Hide';
+        }
+
+        document.getElementById('signup-password').addEventListener('input', function () {
+            const val = this.value;
+            const fill = document.getElementById('strength-fill');
+            const label = document.getElementById('strength-label');
+            const bar = document.getElementById('pw-strength');
+
+            if (!val) { bar.style.display = 'none'; return; }
+            bar.style.display = 'flex';
+
+            let score = 0;
+            if (val.length >= 8) score++;
+            if (/[A-Z]/.test(val)) score++;
+            if (/[0-9]/.test(val)) score++;
+            if (/[^A-Za-z0-9]/.test(val)) score++;
+
+            const levels = [
+                { pct: '25%', color: '#ef4444', text: 'Weak' },
+                { pct: '50%', color: '#f97316', text: 'Fair' },
+                { pct: '75%', color: '#eab308', text: 'Good' },
+                { pct: '100%', color: '#22c55e', text: 'Strong' },
+            ];
+            const lvl = levels[Math.max(0, score - 1)];
+            fill.style.width = lvl.pct;
+            fill.style.background = lvl.color;
+            label.textContent = lvl.text;
+            label.style.color = lvl.color;
+        });
+
+        document.getElementById('signup-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            let valid = true;
+
+            const name = document.getElementById('signup-name').value.trim();
+            const email = document.getElementById('signup-email').value.trim();
+            const password = document.getElementById('signup-password').value;
+            const confirm = document.getElementById('signup-confirm').value;
+            const terms = document.getElementById('signup-terms').checked;
+
+            ['name-error','email-error','password-error','confirm-error','terms-error','signup-error'].forEach(id => {
+                document.getElementById(id).textContent = '';
+            });
+
+            if (name.length < 2) { document.getElementById('name-error').textContent = 'Please enter your full name.'; valid = false; }
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { document.getElementById('email-error').textContent = 'Please enter a valid email address.'; valid = false; }
+            if (password.length < 6) { document.getElementById('password-error').textContent = 'Password must be at least 6 characters.'; valid = false; }
+            if (password !== confirm) { document.getElementById('confirm-error').textContent = 'Passwords do not match.'; valid = false; }
+            if (!terms) { document.getElementById('terms-error').textContent = 'You must agree to the terms.'; valid = false; }
+            if (!valid) return;
+
+            const users = JSON.parse(localStorage.getItem('parkhero_users') || '[]');
+            if (users.find(u => u.email === email)) {
+                document.getElementById('signup-error').textContent = '❌ An account with that email already exists.';
+                return;
+            }
+
+            users.push({ name, email, password });
+            localStorage.setItem('parkhero_users', JSON.stringify(users));
+
+            const btn = this.querySelector('button[type="submit"]');
+            btn.textContent = 'Creating account...';
+            btn.disabled = true;
+            document.getElementById('signup-success').style.display = 'block';
+            setTimeout(() => { window.location.href = 'login.html'; }, 2000);
+        });
+    </script>
+</body>
+</html>
