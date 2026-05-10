@@ -133,28 +133,17 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // ========== PRICING BUTTONS ==========
     const subscribeBtn = document.querySelector('.pricing-card.featured .btn-primary');
-    if (subscribeBtn) {
-        subscribeBtn.addEventListener('click', function () {
-            subscribeBtn.textContent = 'Opening subscription...';
-            subscribeBtn.disabled = true;
-            setTimeout(function () {
-                subscribeBtn.textContent = 'Subscribe Now';
-                subscribeBtn.disabled = false;
-            }, 2000);
-        });
-    }
-
-    document.querySelectorAll('.pricing-card .btn-secondary').forEach(function (btn) {
-        btn.addEventListener('click', function () {
-            const original = btn.textContent;
-            btn.textContent = "We'll be in touch!";
-            btn.disabled = true;
-            setTimeout(function () {
-                btn.textContent = original;
-                btn.disabled = false;
-            }, 2000);
-        });
+if (subscribeBtn) {
+    subscribeBtn.addEventListener('click', function () {
+        window.location.href = 'login.html';
     });
+}
+
+document.querySelectorAll('.pricing-card .btn-secondary').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+        window.location.href = 'login.html';
+    });
+});
 
 
     // ========== CONTACT FORM ==========
