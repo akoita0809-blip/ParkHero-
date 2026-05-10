@@ -464,6 +464,11 @@ section {
     text-align: center;
     transition: all 0.3s ease;
     border: 2px solid transparent;
+} 
+.pricing-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    border-color :#007bff;
 }
 
 .pricing-card.featured {
