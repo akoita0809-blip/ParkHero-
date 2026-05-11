@@ -18,18 +18,14 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-
     // ========== SMOOTH SCROLLING ==========
     document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
             const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
+            if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
         });
     });
-
 
     // ========== PARKING SPOTS DEMO ==========
     const spotsContainer = document.getElementById('spots');
@@ -53,9 +49,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             if (spot.available) {
                 spotEl.addEventListener('click', function () {
-                    document.querySelectorAll('.spot.selected').forEach(function (el) {
-                        el.classList.remove('selected');
-                    });
+                    document.querySelectorAll('.spot.selected').forEach(el => el.classList.remove('selected'));
                     spotEl.classList.add('selected');
                     selectedSpotDisplay.textContent = spot.id;
                     spotPriceDisplay.textContent = spot.price;
@@ -68,7 +62,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Reserve button
     if (reserveBtn) {
         reserveBtn.addEventListener('click', function () {
             const selectedSpot = selectedSpotDisplay.textContent;
@@ -81,7 +74,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     reserveBtn.disabled = false;
                     reserveBtn.style.background = '';
                     spotInfoBox.style.display = 'none';
-                    document.querySelectorAll('.spot.selected').forEach(function (el) {
+                    document.querySelectorAll('.spot.selected').forEach(el => {
                         el.classList.remove('selected', 'available');
                         el.classList.add('taken');
                     });
@@ -89,33 +82,6 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     }
-
-
-    // ========== LOGIN FORM ==========
-    const loginForm = document.getElementById('login-form');
-    const loginSuccess = document.getElementById('login-success');
-    const loginError = document.getElementById('login-error');
-
-    if (loginForm) {
-        loginForm.addEventListener('submit', function (e) {
-            e.preventDefault();
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-
-            // Demo login - accepts any email with password longer than 5 chars
-            if (email && password.length >= 6) {
-                loginSuccess.style.display = 'block';
-                loginError.style.display = 'none';
-                setTimeout(function () {
-                    window.location.href = 'index.html';
-                }, 2000);
-            } else {
-                loginError.style.display = 'block';
-                loginSuccess.style.display = 'none';
-            }
-        });
-    }
-
 
     // ========== DOWNLOAD BUTTONS ==========
     document.querySelectorAll('.download-buttons .btn-primary').forEach(function (btn) {
@@ -130,21 +96,19 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-
     // ========== PRICING BUTTONS ==========
     const subscribeBtn = document.querySelector('.pricing-card.featured .btn-primary');
-if (subscribeBtn) {
-    subscribeBtn.addEventListener('click', function () {
-        window.location.href = 'login.html';
-    });
-}
+    if (subscribeBtn) {
+        subscribeBtn.addEventListener('click', function () {
+            window.location.href = 'login.html';
+        });
+    }
 
-document.querySelectorAll('.pricing-card .btn-secondary').forEach(function (btn) {
-    btn.addEventListener('click', function () {
-        window.location.href = 'login.html';
+    document.querySelectorAll('.pricing-card .btn-secondary').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            window.location.href = 'login.html';
+        });
     });
-});
-
 
     // ========== CONTACT FORM ==========
     const contactForm = document.getElementById('contact-form');
@@ -161,13 +125,10 @@ document.querySelectorAll('.pricing-card .btn-secondary').forEach(function (btn)
                 submitBtn.textContent = 'Send Message';
                 submitBtn.disabled = false;
                 formSuccess.style.display = 'block';
-                setTimeout(function () {
-                    formSuccess.style.display = 'none';
-                }, 4000);
+                setTimeout(() => { formSuccess.style.display = 'none'; }, 4000);
             }, 1000);
         });
     }
-
 
     // ========== SCROLL ANIMATIONS ==========
     const observer = new IntersectionObserver(function (entries) {
@@ -186,8 +147,7 @@ document.querySelectorAll('.pricing-card .btn-secondary').forEach(function (btn)
         observer.observe(el);
     });
 
-
-    // ========== NAVBAR SHADOW ON SCROLL ==========
+    // ========== NAVBAR SHADOW ==========
     window.addEventListener('scroll', function () {
         const navbar = document.querySelector('.navbar');
         if (navbar) {
@@ -197,8 +157,7 @@ document.querySelectorAll('.pricing-card .btn-secondary').forEach(function (btn)
         }
     });
 
-
-    // ========== HIGHLIGHT CURRENT NAV SECTION ==========
+    // ========== ACTIVE NAV HIGHLIGHT ==========
     window.addEventListener('scroll', function () {
         const sections = document.querySelectorAll('section[id]');
         const navLinks = document.querySelectorAll('.nav-menu a');
@@ -223,3 +182,135 @@ document.querySelectorAll('.pricing-card .btn-secondary').forEach(function (btn)
 });
 
 console.log('ParkHero loaded ✅');
+
+// ========== DESTINATION SEARCH ==========
+document.addEventListener('DOMContentLoaded', function () {
+    const input = document.getElementById('destination-input');
+    const searchBtn = document.getElementById('search-btn');
+    const suggestionsBox = document.getElementById('search-suggestions');
+    const resultsPanel = document.getElementById('search-results');
+
+    if (!input) return;
+
+    const popularDestinations = [
+        'Times Square, New York',
+        'JFK Airport, New York',
+        'Central Park, New York',
+        'Madison Square Garden, New York',
+        'Empire State Building, New York',
+        'Yankee Stadium, New York',
+        'Grand Central Terminal, New York',
+        'Brooklyn Bridge, New York',
+        'Citi Field, New York',
+        'Newark Airport, New Jersey',
+        'Penn Station, New York',
+        'Union Square, New York',
+        'Rockefeller Center, New York',
+        'LaGuardia Airport, New York',
+        'Barclays Center, Brooklyn',
+        'World Trade Center, New York',
+        'High Line, New York',
+        'Javits Center, New York',
+        'Bryant Park, New York',
+    ];
+
+    function generateLots(destination) {
+        const lotNames = [
+            'QuickPark Garage', 'City Center Parking', 'Express Lot',
+            'Central Parking', 'ParkSmart Facility', 'Metro Park',
+            'Urban Garage', 'Spot & Go', 'EasyPark',
+        ];
+        const count = Math.floor(Math.random() * 3) + 4;
+        const lots = [];
+        for (let i = 0; i < count; i++) {
+            lots.push({
+                name: lotNames[i % lotNames.length],
+                distance: (Math.random() * 0.8 + 0.1).toFixed(1),
+                price: (Math.random() * 8 + 2).toFixed(2),
+                available: Math.floor(Math.random() * 40) + 3,
+            });
+        }
+        lots.sort((a, b) => parseFloat(a.distance) - parseFloat(b.distance));
+        return lots;
+    }
+
+    function showResults(destination) {
+        if (!destination.trim()) return;
+        const lots = generateLots(destination);
+        resultsPanel.style.display = 'block';
+        resultsPanel.innerHTML = `
+            <h3>🅿 Parking near <em>${destination}</em></h3>
+            ${lots.map((lot, i) => `
+                <div class="result-card" id="lot-${i}" onclick="selectLot(${i}, '${lot.name}', '${lot.price}')">
+                    <div>
+                        <div class="lot-name">${lot.name}</div>
+                        <div class="lot-distance">📍 ${lot.distance} mi away</div>
+                    </div>
+                    <div>
+                        <div class="lot-price">$${lot.price}/hr</div>
+                        <div class="lot-avail">${lot.available} spots open</div>
+                    </div>
+                </div>
+            `).join('')}
+            <div id="lot-reserve-msg" style="display:none; text-align:center; margin-top:14px; color:#28a745; font-weight:bold;"></div>
+            <button class="btn-primary result-reserve-btn" id="lot-reserve-btn" style="display:none;" onclick="reserveLot()">Reserve Selected Spot</button>
+        `;
+        resultsPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    window.selectLot = function (i, name, price) {
+        document.querySelectorAll('.result-card').forEach(c => c.classList.remove('selected'));
+        document.getElementById('lot-' + i).classList.add('selected');
+        const btn = document.getElementById('lot-reserve-btn');
+        btn.style.display = 'block';
+        btn.dataset.lot = name;
+        btn.dataset.price = price;
+    };
+
+    window.reserveLot = function () {
+        const btn = document.getElementById('lot-reserve-btn');
+        const msg = document.getElementById('lot-reserve-msg');
+        btn.disabled = true;
+        btn.textContent = 'Reserving...';
+        setTimeout(() => {
+            btn.style.display = 'none';
+            msg.style.display = 'block';
+            msg.textContent = `✅ Reserved at ${btn.dataset.lot} — $${btn.dataset.price}/hr. Check your email for confirmation!`;
+        }, 1000);
+    };
+
+    input.addEventListener('input', function () {
+        const val = this.value.toLowerCase().trim();
+        suggestionsBox.innerHTML = '';
+        if (!val) return;
+        popularDestinations.filter(d => d.toLowerCase().includes(val)).slice(0, 5).forEach(dest => {
+            const item = document.createElement('div');
+            item.className = 'suggestion-item';
+            item.innerHTML = `<span>📍</span> ${dest}`;
+            item.addEventListener('click', function () {
+                input.value = dest;
+                suggestionsBox.innerHTML = '';
+                showResults(dest);
+            });
+            suggestionsBox.appendChild(item);
+        });
+    });
+
+    searchBtn.addEventListener('click', function () {
+        suggestionsBox.innerHTML = '';
+        showResults(input.value || 'your destination');
+    });
+
+    input.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') {
+            suggestionsBox.innerHTML = '';
+            showResults(input.value || 'your destination');
+        }
+    });
+
+    document.addEventListener('click', function (e) {
+        if (!input.contains(e.target) && !suggestionsBox.contains(e.target)) {
+            suggestionsBox.innerHTML = '';
+        }
+    });
+});
