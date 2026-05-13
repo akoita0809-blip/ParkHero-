@@ -62,27 +62,16 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    if (reserveBtn) {
-        reserveBtn.addEventListener('click', function () {
-            const selectedSpot = selectedSpotDisplay.textContent;
-            if (selectedSpot) {
-                reserveBtn.textContent = '✅ Reserved! Redirecting to payment...';
-                reserveBtn.disabled = true;
-                reserveBtn.style.background = '#28a745';
-                setTimeout(function () {
-                    reserveBtn.textContent = 'Reserve Now';
-                    reserveBtn.disabled = false;
-                    reserveBtn.style.background = '';
-                    spotInfoBox.style.display = 'none';
-                    document.querySelectorAll('.spot.selected').forEach(el => {
-                        el.classList.remove('selected', 'available');
-                        el.classList.add('taken');
-                    });
-                }, 2500);
-            }
-        });
-    }
-
+   if (reserveBtn) {
+    reserveBtn.addEventListener('click', function () {
+        const selectedSpot = selectedSpotDisplay.textContent;
+        const price = spotPriceDisplay.textContent;
+        if (selectedSpot) {
+            window.location.href = 'payment.html?spot=' + encodeURIComponent(selectedSpot) + '&price=' + encodeURIComponent(price);
+        }
+    });
+    
+}
     // ========== DOWNLOAD BUTTONS ==========
     document.querySelectorAll('.download-buttons .btn-primary').forEach(function (btn) {
         btn.addEventListener('click', function () {
@@ -281,16 +270,11 @@ document.addEventListener('DOMContentLoaded', function () {
     };
 
     window.reserveLot = function () {
-        const btn = document.getElementById('lot-reserve-btn');
-        const msg = document.getElementById('lot-reserve-msg');
-        btn.disabled = true;
-        btn.textContent = 'Reserving...';
-        setTimeout(() => {
-            btn.style.display = 'none';
-            msg.style.display = 'block';
-            msg.textContent = `✅ Reserved at ${btn.dataset.lot} — $${btn.dataset.price}/hr. Check your email for confirmation!`;
-        }, 1000);
-    };
+    const btn = document.getElementById('lot-reserve-btn');
+    const price = btn.dataset.price;
+    const lot = btn.dataset.lot;
+    window.location.href = 'payment.html?spot=' + encodeURIComponent(lot) + '&price=' + encodeURIComponent(price);
+};
 
     input.addEventListener('input', function () {
         const val = this.value.toLowerCase().trim();
