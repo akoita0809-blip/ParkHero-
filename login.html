@@ -75,15 +75,16 @@
                 .single();
 
             if (data) {
-                successEl.style.display = 'block';
-                errorEl.style.display = 'none';
-                setTimeout(() => { window.location.href = 'index.html'; }, 2000);
-            } else {
-                errorEl.style.display = 'block';
-                successEl.style.display = 'none';
-            }
+    sessionStorage.setItem('parkhero_user', JSON.stringify(data));
+    successEl.style.display = 'block';
+    errorEl.style.display = 'none';
+    setTimeout(() => { window.location.href = 'index.html'; }, 2000);
+} else {
+    errorEl.style.display = 'block';
+    successEl.style.display = 'none';
+}
         }, true);
-    }
+    }       
 </script>
 </body>
 </html>

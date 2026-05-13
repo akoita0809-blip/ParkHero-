@@ -314,3 +314,23 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
+ // ========== AUTH NAV ==========
+(function() {
+    const user = sessionStorage.getItem('parkhero_user');
+    const navMenu = document.getElementById('nav-menu');
+    if (!navMenu) return;
+
+    const loginLink = navMenu.querySelector('a[href="login.html"]');
+    if (!loginLink) return;
+
+    if (user) {
+        const parsed = JSON.parse(user);
+        loginLink.textContent = 'Logout';
+        loginLink.href = '#';
+        loginLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            sessionStorage.removeItem('parkhero_user');
+            window.location.href = 'index.html';
+        });
+    }
+})();
