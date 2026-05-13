@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ParkHero - Payment</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body >
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo"><a href="index.html" style="text-decoration:none; color:#007bff;">ParkHero</a></div>
+            <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="features.html">Features</a></li>
+                <li><a href="how-it-works.html">How It Works</a></li>
+                <li><a href="pricing.html">Pricing</a></li>
+                <li><a href="login.html" class="nav-login">Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="login-section">
+        <div class="login-box" style="max-width:500px;">
+            <div class="login-logo">💳</div>
+            <h2>Complete Payment</h2>
+            <p class="login-subtitle" id="payment-summary">Reserving your parking spot</p>
+
+            <form id="payment-form">
+                <div class="form-group">
+                    <input type="text" id="card-name" placeholder="Name on Card" required>
+                    <p class="field-error" id="card-name-error"></p>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="card-number" placeholder="Card Number (1234 5678 9012 3456)" maxlength="19" required>
+                    <p class="field-error" id="card-number-error"></p>
+                </div>
+                <div style="display:flex; gap:15px;">
+                    <div class="form-group" style="flex:1;">
+                        <input type="text" id="card-expiry" placeholder="MM/YY" maxlength="5" required>
+                        <p class="field-error" id="expiry-error"></p>
+                    </div>
+                    <div class="form-group" style="flex:1;">
+                        <input type="text" id="card-cvv" placeholder="CVV" maxlength="3" required>
+                        <p class="field-error" id="cvv-error"></p>
+                    </div>
+                </div>
+                <div class="payment-summary-box">
+                    <div class="summary-row">
+                        <span>Parking Spot</span>
+                        <span id="summary-spot">—</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Rate</span>
+                        <span id="summary-price">—</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Service Fee</span>
+                        <span>$0.99</span>
+                    </div>
+                    <div class="summary-row total">
+                        <span>Total</span>
+                        <span id="summary-total">—</span>
+                    </div>
+                </div>
+                <button type="submit" class="btn-primary" style="width:100%; margin-top:20px;">Pay Now</button>
+                <p class="form-success" id="payment-success">✅ Payment successful! Your spot is reserved.</p>
+                <p class="form-error" id="payment-error"></p>
+            </form>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p class="footer-copy">&copy; 2026 ParkHero. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Get spot info from URL params
+        const params = new URLSearchParams(window.location.search);
+        const spot = params.get('spot') || 'A1';
+        const price = params.get('price') || '3.00';
+        const total = (parseFloat(price) + 0.99).toFixed(2);
+
+        document.getElementById('summary-spot').textContent = 'Spot ' + spot;
+        document.getElementById('summary-price').textContent = '$' + price + '/hr';
+        document.getElementById('summary-total').textContent = '$' + total;
+        document.getElementById('payment-summary').textContent = 'Reserving Spot ' + spot + ' at $' + price + '/hr';
+
+        // Format card number with spaces
+        document.getElementById('card-number').addEventListener('input', function () {
+            let val = this.value.replace(/\D/g, '').substring(0, 16);
+            this.value = val.match(/.{1,4}/g)?.join(' ') || val;
+        });
+
+        // Format expiry
+        document.getElementById('card-expiry').addEventListener('input', function () {
+            let val = this.value.replace(/\D/g, '').substring(0, 4);
+            if (val.length >= 2) val = val.substring(0, 2) + '/' + val.substring(2);
+            this.value = val;
+        });
+
+        // Only numbers for CVV
+        document.getElementById('card-cvv').addEventListener('input', function () {
+            this.value = this.value.replace(/\D/g, '').substring(0, 3);
+        });
+
+        document.getElementById('payment-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            let valid = true;
+
+            const name = document.getElementById('card-name').value.trim();
+            const number = document.getElementById('card-number').value.replace(/\s/g, '');
+            const expiry = document.getElementById('card-expiry').value;
+            const cvv = document.getElementById('card-cvv').value;
+
+            ['card-name-error','card-number-error','expiry-error','cvv-error','payment-error'].forEach(id => {
+                document.getElementById(id).textContent = '';
+            });
+
+            if (name.length < 2) { document.getElementById('card-name-error').textContent = 'Please enter the name on your card.'; valid = false; }
+            if (number.length !== 16) { document.getElementById('card-number-error').textContent = 'Please enter a valid 16-digit card number.'; valid = false; }
+            if (!/^\d{2}\/\d{2}$/.test(expiry)) { document.getElementById('expiry-error').textContent = 'Please enter a valid expiry date.'; valid = false; }
+            if (cvv.length !== 3) { document.getElementById('cvv-error').textContent = 'Please enter a valid CVV.'; valid = false; }
+            if (!valid) return;
+
+            const btn = this.querySelector('button[type="submit"]');
+            btn.textContent = 'Processing...';
+            btn.disabled = true;
+
+            setTimeout(() => {
+                document.getElementById('payment-success').style.display = 'block';
+                btn.style.display = 'none';
+                setTimeout(() => { window.location.href = 'index.html'; }, 3000);
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
