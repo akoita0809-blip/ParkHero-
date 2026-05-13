@@ -53,10 +53,10 @@
     </footer>
 
    <script src="script.js"></script>
-<script type="module">
-    import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
-
-    const supabase = createClient('https://bnlnmqbnyymbhewhbzra.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJubG5tcWJueXltYmhld2hienJhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg2MTU1NjUsImV4cCI6MjA5NDE5MTU2NX0.Ymtz_tQuNdU7xQOwtLuIY5lwljXTMK4fUxNS2Qks4Yg')
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+    const { createClient } = supabase;
+    const client = createClient('https://bnlnmqbnyymbhewhbzra.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJubG5tcWJueXltYmhld2hienJhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg2MTU1NjUsImV4cCI6MjA5NDE5MTU2NX0.Ymtz_tQuNdU7xQOwtLuIY5lwljXTMK4fUxNS2Qks4Yg');
 
     const loginForm = document.getElementById('login-form');
     if (loginForm) {
@@ -67,12 +67,12 @@
             const successEl = document.getElementById('login-success');
             const errorEl = document.getElementById('login-error');
 
-            const { data, error } = await supabase
+            const { data, error } = await client
                 .from('Users')
                 .select('*')
                 .eq('email', email)
                 .eq('password', password)
-                .single()
+                .single();
 
             if (data) {
                 successEl.style.display = 'block';
