@@ -179,6 +179,19 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
+    // ========== AUTH NAV ==========
+    const user = sessionStorage.getItem('parkhero_user');
+    const loginLink = document.querySelector('.nav-menu a[href="login.html"]');
+    if (loginLink && user) {
+        loginLink.textContent = 'Logout';
+        loginLink.href = '#';
+        loginLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            sessionStorage.removeItem('parkhero_user');
+            window.location.href = 'index.html';
+        });
+    }
+
 });
 
 console.log('ParkHero loaded ✅');
@@ -244,7 +257,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 <div class="result-card" id="lot-${i}" onclick="selectLot(${i}, '${lot.name}', '${lot.price}')">
                     <div>
                         <div class="lot-name">${lot.name}</div>
-                        <div class="lot-distance">📍 ${lot.distance} mi away</div>
+                        <div class="lot-distance">→ ${lot.distance} mi away</div>
                     </div>
                     <div>
                         <div class="lot-price">$${lot.price}/hr</div>
@@ -286,7 +299,7 @@ document.addEventListener('DOMContentLoaded', function () {
         popularDestinations.filter(d => d.toLowerCase().includes(val)).slice(0, 5).forEach(dest => {
             const item = document.createElement('div');
             item.className = 'suggestion-item';
-            item.innerHTML = `<span>📍</span> ${dest}`;
+            item.innerHTML = `• ${dest}`;
             item.addEventListener('click', function () {
                 input.value = dest;
                 suggestionsBox.innerHTML = '';
@@ -314,23 +327,3 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
- // ========== AUTH NAV ==========
-(function() {
-    const user = sessionStorage.getItem('parkhero_user');
-    const navMenu = document.getElementById('nav-menu');
-    if (!navMenu) return;
-
-    const loginLink = navMenu.querySelector('a[href="login.html"]');
-    if (!loginLink) return;
-
-    if (user) {
-        const parsed = JSON.parse(user);
-        loginLink.textContent = 'Logout';
-        loginLink.href = '#';
-        loginLink.addEventListener('click', function(e) {
-            e.preventDefault();
-            sessionStorage.removeItem('parkhero_user');
-            window.location.href = 'index.html';
-        });
-    }
-})();
